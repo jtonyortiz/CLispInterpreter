@@ -73,5 +73,4 @@ CLISP> lunatic
 No, you're a lunatic
 CLISP> No, you're a lunatic
 CLISP> ^C
-
 */
