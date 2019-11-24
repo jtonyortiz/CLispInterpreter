@@ -4,7 +4,7 @@
 //Description: A simple parser for polish
 //notation in C.
 //Compile: gcc -std=c99 -Wall parser.c mpc.c -o parsing
-//==============================================
+//==========================================================
 
 #include "mpc.h"
 #ifdef _WIN32
@@ -15,7 +15,7 @@ char* readline(char* prompt)
 {
 	fputs(prompt,stdout);
 	fgets(buffer, 2048, stdin);
-	char* cpy = malloc(strlen(buffer)+1);
+	char* cpy = malloc(strlen(buffer) + 1);
 	strcpy(cpy,buffer);
 	cpy[strlen(cpy)-1] = '\0';
 	return cpy;
@@ -40,13 +40,13 @@ int main(int argc, char** argv)
 	mpca_lang(MPCA_LANG_DEFAULT,
 	"                                                     \
       number   : /-?[0-9]+/ ;                             \
-      operator : '+' | '-' | '*' | '/' ;                  \
+      operator : '+' | '-' | '*' | '/' | '%' ;            \
       expr     : <number> | '(' <operator> <expr>+ ')' ;  \
       lispy    : /^/ <operator> <expr>+ /$/ ;             \
     ",
 	Number, Operator, Expr, Lispy);
 	
-	puts("Lispy Version 0.0.0.0.2");
+	puts("CLISP Version 0.0.0.0.2");
 	puts("Press Ctrl+c to Exit\n");
 	
 	while(1)
