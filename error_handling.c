@@ -2,7 +2,7 @@
 //File: error_handling.c
 //Author: James Anthony Ortiz
 //Description: Provides error-handling for 
-//evaluator, avoiding crashes in program.One
+//evaluator, avoiding crashes in program.
 //compile: gcc -std=c99 -Wall mpc.c error_handling.c -o errhandle
 //==================================================================
 
@@ -29,13 +29,13 @@ void add_history(char* unused){}
 #endif
 
 /* Create Enumeration of Possible Error Types */
-enum{ LERR_DIV_ZERO, LERR_BAD_OP, LERR_BAD_NUM};
+enum err_type { LERR_DIV_ZERO, LERR_BAD_OP, LERR_BAD_NUM };
 
 /* Create Enumeration of Possible lval Types:
 	If type is 0 then the structure is a Number.
 	If type is 1 then the structure is an Error. 
 */
-enum { LVAL_NUM, LVAL_ERR };
+enum lval_type { LVAL_NUM, LVAL_ERR };
 
 
 /* Declare new lval struct */
@@ -163,7 +163,7 @@ int main(int argc, char** argv)
   mpca_lang(MPCA_LANG_DEFAULT,
     "                                                     \
       number   : /-?[0-9]+/ ;                             \
-      operator : '+' | '-' | '*' | '/' ;                  \
+      operator : '+' | '-' | '*' | '/' | '%' ;            \
       expr     : <number> | '(' <operator> <expr>+ ')' ;  \
       lispy    : /^/ <operator> <expr>+ /$/ ;             \
     ",
